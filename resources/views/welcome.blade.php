@@ -67,6 +67,10 @@
                 }
             });
 
+			socket.on('join.room', (count) => {
+				$('.total-user-count').text(count);
+			});
+
             socket.on('message.send', (message) => {
                 $('.chat-message-area').append(`
                     <div class="d-flex justify-content-start mb-4">
