@@ -68,7 +68,7 @@
             });
 
 			socket.on('join.room', (count) => {
-				$('.total-user-count').text(count);
+				$('.total-user-count').text("Total Online User: " + count);
 			});
 
             socket.on('message.send', (message) => {
