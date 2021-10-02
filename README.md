@@ -2,6 +2,9 @@
 <hr>
 <b>Usage</b>
 <code>
+    
 1. Terminal = php artisan serve
+    
 2. Terminal = node server
+    
 </code>
