@@ -7,21 +7,22 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
     cors: { origin: "*" }
 });
+
+var userCount = 0;
 io.on('connection', (socket) => {
-    console.log('user connected');
 
-    socket.on('message.send', (message) => {
-        //console.log(message);
-        // io.sockets.emit('message.send', message);
-        socket.broadcast.emit('message.send', message);
-    });
+  // joined the chat
+  socket.broadcast.emit('message.send', "A user has joined the chat");
 
-    socket.on('disconnect', () => {
-      console.log('user disconnected');
-      count--;
-    });
-
+  // disconnect the chat
+  socket.on('disconnect', () => {
+    io.emit("message.send", "A user has disconnect the chat");
   });
+
+  socket.on('message.send', (message) => {
+    io.emit('message.send', message);
+  });
+});
 
 server.listen(3000, () => {
     console.log('server successfully running');
